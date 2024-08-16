@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <style type="text/css">
 	body{
-		background-image: url("https://st4.depositphotos.com/1032577/27205/i/450/depositphotos_272050166-stock-photo-white-wall-background-copy-space.jpg");
+		background-image: url("backgroundhome.jpg");
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
@@ -58,11 +58,6 @@ if(check!=null)
 	    </div>
 	  </div>
 	</div>
-	
-	
-	
-		
-				
 				<div class="container">
 				    <div class="row">
 				        <%

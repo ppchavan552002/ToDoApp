@@ -31,10 +31,10 @@ public class Launch1 extends HttpServlet {
 		
 		if(res.equals("insert")) {
 			nDao.CreateTable(userid, con);
-			session.setAttribute("msg", "Account is crearted");
+			session.setAttribute("msg", "Account is Created");
 			resp.sendRedirect("login.jsp");
 		}else {
-			session.setAttribute("msg", "Account is already exists");
+			session.setAttribute("msg", "Account is Already Exists");
 			resp.sendRedirect("signup.jsp");
 		}
 	}
