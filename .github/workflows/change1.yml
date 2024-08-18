@@ -1,0 +1,39 @@
+name: Build and Deploy Java Web App to Tomcat
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Compile Java code
+        run: |
+          mkdir -p WEB-INF/classes
+          javac -d WEB-INF/classes -sourcepath src src/com/Controller/*.java src/com/ConnectionFactory/*.java src/com/Model/*.java
+
+      - name: Package WAR file
+        run: |
+          jar cvf mywebapp.war -C WEB-INF/ .
+          mkdir -p target
+          mv mywebapp.war target/
+
+      - name: Deploy to Tomcat
+        env:
+          TOMCAT_HOST: ${{ secrets.TOMCAT_HOST }}
+          TOMCAT_USER: "root"
+          TOMCAT_PASSWORD: ""
+        run: |
+          curl --upload-file target/mywebapp.war "http://root:@${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/mywebapp&update=true"
