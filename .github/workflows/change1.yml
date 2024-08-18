@@ -22,7 +22,8 @@ jobs:
       - name: Compile Java code
         run: |
           mkdir -p WEB-INF/classes
-          javac -d WEB-INF/classes -sourcepath src src/com/Controller/*.java src/com/ConnectionFactory/*.java src/com/Model/*.java
+          find src -name "*.java" > sources.txt
+          javac -d WEB-INF/classes @sources.txt
 
       - name: Package WAR file
         run: |
